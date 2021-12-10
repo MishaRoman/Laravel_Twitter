@@ -281,9 +281,10 @@ button {
 	color: rgb(15, 20, 25);
 	border: 2px solid rgba(26, 145, 218, 0.1);
 	border-radius: 5px;
-	/*width: 400px;*/
+	width: 400px;
 	margin: 0 auto;
 	margin-bottom: 15px;
+    background-color: ghostwhite;
 }
 
 .tweet-form__input:focus {
