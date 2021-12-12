@@ -335,13 +335,14 @@ button {
 	/*background-color: rgb(29, 161, 242);*/
 	background-color: rgb(26, 145, 218);
 	padding: 0 15px;
-	opacity: 0.5;
+	opacity: 0.8;
 	border-radius: 9999px;
 	height: 40px;
 	font-size: 16px;
 	font-weight: 700;
 	color: #ffffff;
 	margin: 0 0 0 auto;
+	max-width: 100px;
 }
 
 .tweet-form__btn_center {
@@ -394,7 +395,7 @@ button {
 .tweet-author__add {
 	font-weight: 400;
 	color: rgb(91, 112, 131);
-	font-size: 16px;
+	font-size: 18px;
 }
 
 .tweet-post__text {
@@ -501,4 +502,17 @@ button {
 
 .is-invalid {
 	border: 1px solid red;
+}
+
+.profile__avatar {
+	width: 60px;
+	height: 60px;
+}
+
+.profile__description {
+	margin: 15px auto;
+}
+
+.profile__url{
+	color: #0d6efd;
 }

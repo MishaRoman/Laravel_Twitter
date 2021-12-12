@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
      crossorigin="anonymous">
+     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=cyrillic" rel="stylesheet" id="wt-sky-css--725574360">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
 </head>
 <body>
@@ -36,7 +37,13 @@
         <section class="wrapper">
             <div class="main-header">
                 <a href="/" class="header__link header__link_home" title="Лента"></a>
-                <a href="#" class="header__link header__link_profile" title="Твиты пользователя"></a>
+                <a
+                @guest
+                    href="{{ route('login') }}"                
+                @else
+                    href="{{ route('profiles.index', [Auth::user()->username]) }}"
+                @endguest
+                    class="header__link header__link_profile" title="Твиты пользователя"></a>
                 <a href="#" class="header__link header__link_likes" title="Понравившиеся твиты"></a>
                 <a href="#" class="header__link header__link_sort" title="Сортировать"></a>
             </div>

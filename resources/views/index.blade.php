@@ -6,7 +6,7 @@
 <ul class="tweet-list">
     <li>
         <article class="tweet">
-            <div class="row">
+            <div class="d-flex">
                 <img class="avatar" src="images/mary.jpg" alt="Аватар пользователя">
                 <div class="tweet__wrapper">
                     <header class="tweet__header">
@@ -17,7 +17,7 @@
                         <button class="tweet__delete-button chest-icon"></button>
                     </header>
                     <div class="tweet-post">
-                        <p class="tweet-post__text">Lorem ipsum dolor sit amet, consectetur.</p>
+                        <p class="tweet-post__text">Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa obcaecati impedit voluptas corrupti eius, cumque amet veniam ad temporibus possimus quam nam nostrum consequatur nulla sequi, a officiis in explicabo modi aspernatur, expedita minima neque at est ab! Nostrum, consectetur odit? Praesentium neque consequatur doloremque animi quia. Odit obcaecati, quae.</p>
                         <figure class="tweet-post__image">
                             <img src="https://picsum.photos/400/300?" alt="Сообщение Марии Lorem ipsum dolor sit amet, consectetur.">
                         </figure>
