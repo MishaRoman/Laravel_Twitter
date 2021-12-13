@@ -18,11 +18,15 @@ class ProfilesController extends Controller
     {
         $user = User::where('username', $username)->firstOrFail();
 
+        $this->authorize('update', $user->profile);
+
         return view('profiles.edit', compact('user'));
     }
 
     public function update(Request $request, User $user)
     {
+        $this->authorize('update', $user->profile);
+        
         $user->profile->update($request->all());
         return redirect("profiles/{$user->username}");
     }

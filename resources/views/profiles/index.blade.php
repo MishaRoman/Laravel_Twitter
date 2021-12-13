@@ -15,11 +15,11 @@
 					<p class="tweet-author__add tweet-author__nickname mt-2">@ {{ $user->username }}</p>
 				</div>
 			</div>
-			@if(Auth::user()->username != $user->username)
-				<button class="tweet-form__btn" type="submit">Читать</button>
-			@else
+			@can('update', $user->profile)
 				<a class="profile__edit" href="{{ route('profiles.edit', [Auth::user()->username]) }}">Настройки профиля</a>
-			@endif
+			@else
+				<button class="tweet-form__btn" type="submit">Читать</button>
+			@endcan
 		</div>
 		<div class="profile__description lh-sm">{{ $user->profile->description ?? '' }}</div>
 		<div class="d-flex mt-3">
@@ -54,21 +54,22 @@
 		<li>
 		    <article class="tweet">
 		        <div class="d-flex">
-		            <img class="avatar" src="{{ asset('images/mary.jpg') }}" alt="Аватар пользователя">
+		            <img class="avatar" src="{{ asset('images/no_avatar.png') }}" alt="Аватар пользователя">
 		            <div class="tweet__wrapper">
 		                <header class="tweet__header">
 		                    <h3 class="tweet-author">{{ $user->name }}
 		                        <a href="#" class="tweet-author__add tweet-author__nickname">@ {{ $user->username }}</a>
 		                        <time class="tweet-author__add tweet__date">{{ $post->created_at->format('d.m.Y') }}</time>
 		                    </h3>
-		                    <button class="tweet__delete-button chest-icon"></button>
+		                    @can('update', $user->profile)
+			                    <button class="tweet__delete-button chest-icon"></button>
+			                @endcan
 		                </header>
-		                <div class="tweet-post">
-		                    <p class="tweet-post__text">{{ $post->text }}</p>
-		                    <figure class="tweet-post__image">
-		                        <img src="https://picsum.photos/400/300?" alt="Сообщение Марии Lorem ipsum dolor sit amet, consectetur.">
-		                    </figure>
-		                </div>
+		                <a href="{{ route('posts.show', [$post]) }}">
+			                <div class="tweet-post">
+			                    <p class="tweet-post__text">{{ $post->text }}</p>
+			                </div>
+			            </a>
 		            </div>
 		        </div>
 		        <footer>
