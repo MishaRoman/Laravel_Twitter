@@ -3,30 +3,36 @@
 @section('title', 'Twitter')
 
 @section('content')
-<section class="wrapper">
-    <ul class="tweet-list">
-        <li>
-            <article class="tweet">
-                <div class="d-flex">
-                    <img class="avatar" src="images/mary.jpg" alt="Аватар пользователя">
-                    <div class="tweet__wrapper">
-                        <header class="tweet__header">
-                            <h3 class="tweet-author">Мария Иванова
-                                <a href="#" class="tweet-author__add tweet-author__nickname">@mary</a>
-                                <time class="tweet-author__add tweet__date">11 января</time>
-                            </h3>
-                            <button class="tweet__delete-button chest-icon"></button>
-                        </header>
-                        <div class="tweet-post">
-                            <p class="tweet-post__text">Lorem ipsum dolor sit amet, consectetur. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ipsa obcaecati impedit voluptas corrupti eius, cumque amet veniam ad temporibus possimus quam nam nostrum consequatur nulla sequi, a officiis in explicabo modi aspernatur, expedita minima neque at est ab! Nostrum, consectetur odit? Praesentium neque consequatur doloremque animi quia. Odit obcaecati, quae.</p>
+@foreach($posts as $post)
+    <section class="wrapper">
+        <ul class="tweet-list">
+            <li>
+                <article class="tweet">
+                    <div class="d-flex">
+                        <img class="avatar" src="{{ asset('images/no_avatar.png') }}" alt="Аватар пользователя">
+                        <div class="tweet__wrapper">
+                            <header class="tweet__header">
+                                <h3 class="tweet-author">{{ $post->user->name }}
+                                    <a href="#" class="tweet-author__add tweet-author__nickname">@ {{ $post->user->username }}</a>
+                                    <time class="tweet-author__add tweet__date">{{ $post->created_at->format('d.m.Y') }}</time>
+                                </h3>
+                                @can('update', $post->user->profile)
+                                    <button class="tweet__delete-button chest-icon"></button>
+                                @endcan
+                            </header>
+                            <a href="{{ route('posts.show', [$post]) }}">
+                                <div class="tweet-post">
+                                    <p class="tweet-post__text">{{ $post->text }}</p>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
-                <footer>
-                    <button class="tweet__like">53</button>
-                </footer>
-            </article>
-        </li>
-    </ul>
-</section>
+                    <footer>
+                        <button class="tweet__like">53</button>
+                    </footer>
+                </article>
+            </li>
+        </ul>
+    </section>
+@endforeach
 @endsection
