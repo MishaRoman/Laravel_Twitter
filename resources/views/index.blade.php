@@ -17,7 +17,11 @@
                                     <time class="tweet-author__add tweet__date">{{ $post->created_at->format('d.m.Y') }}</time>
                                 </h3>
                                 @can('update', $post->user->profile)
-                                    <button class="tweet__delete-button chest-icon"></button>
+                                    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="tweet__delete-button chest-icon" type="submit"></button>
+                                    </form>
                                 @endcan
                             </header>
                             <a href="{{ route('posts.show', [$post]) }}">
