@@ -3,6 +3,7 @@
 @section('title', 'Twitter - Регистрация')
 
 @section('content')
+<section class="wrapper">
     <h2 class="tweet-form__title">Регистрация</h2>
     <div class="tweet-form__subtitle">Уже есть аккаунт? - <a href="{{ route('login') }}">авторизируйтесь</a></div>
     <div class="tweet-form__error">{{ $errors->first() }}</div>
@@ -31,4 +32,5 @@
             <button class="tweet-form__btn_center" type="submit">Зарегистрироваться</button>
         </div>
     </form>
+</section>
 @endsection

@@ -13,3 +13,5 @@ Route::get('/', function () {
 Route::get('profiles/{username}', [ProfilesController::class, 'index'])->name('profiles.index');
 Route::patch('profiles/{user}', [ProfilesController::class, 'update'])->name('profiles.update');
 Route::get('profiles/{username}/edit', [ProfilesController::class, 'edit'])->name('profiles.edit');
+
+Route::resource('posts', PostsController::class);

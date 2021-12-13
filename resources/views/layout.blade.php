@@ -49,9 +49,7 @@
             </div>
         </section>
 
-        <section class="wrapper">
-            @yield('content')
-        </section>
+        @yield('content')
 
     </main>
 </div>

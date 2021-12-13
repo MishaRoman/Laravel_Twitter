@@ -296,11 +296,11 @@ button {
 	font-size: 16px;
 	padding: 10px;
 	color: rgb(15, 20, 25);
-	border: 2px solid rgba(26, 145, 218, 0.1);
 	border-radius: 5px;
 	margin-left: 10px;
 	outline: none;
 	resize: none;
+	border: 2px solid rgb(0 28 84 / 10%);
 }
 
 .tweet-form__text:focus {
@@ -514,5 +514,10 @@ button {
 }
 
 .profile__url{
+	color: #0d6efd;
+}
+
+.profile__edit {
+	max-width: 180px;
 	color: #0d6efd;
 }
