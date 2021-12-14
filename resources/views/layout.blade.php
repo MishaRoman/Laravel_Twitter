@@ -45,10 +45,17 @@
                 @endguest
                     class="header__link header__link_profile" title="Твиты пользователя"></a>
                 <a href="#" class="header__link header__link_likes" title="Понравившиеся твиты"></a>
-                <a href="#" class="header__link header__link_sort" title="Сортировать"></a>
+                @yield('sorting')
             </div>
         </section>
 
+        <section class="wrapper">
+            @if(session()->has('warning'))
+                <div class="alert alert-danger">
+                    <p>{{ session()->get('warning') }}</p>
+                </div>
+            @endif
+        </section>
         @yield('content')
 
     </main>

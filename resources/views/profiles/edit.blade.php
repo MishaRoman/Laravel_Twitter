@@ -15,7 +15,7 @@
 
             <textarea id="description" rows="6" class="tweet-form__input @error('description') is-invalid @enderror"
                 placeholder="Описание" name="description"
-                value="{{ old('description') ?? $user->profile->description }}" autocomplete="username" autofocus></textarea>
+                value="{{ old('description') ?? $user->profile->description }}" autocomplete="description" autofocus></textarea>
 
             <input id="url" type="text" class="tweet-form__input @error('url') is-invalid @enderror" placeholder="Сайт" 
                 name="url" value="{{ old('url') ?? $user->profile->url }}" autocomplete="url">

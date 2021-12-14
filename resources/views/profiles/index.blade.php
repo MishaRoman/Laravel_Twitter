@@ -2,6 +2,14 @@
 
 @section('title', $user->name)
 
+@section('sorting')
+    @if(Route::is('profiles.sorted'))
+        <a href="{{ route('profiles.index', $user->username) }}" class="header__link header__link_sort" title="Сортировать"></a>
+    @else
+        <a href="{{ route('profiles.sorted', $user->username) }}" class="header__link header__link_sort" title="Сортировать"></a>
+    @endif
+@endsection
+
 @section('content')
 <section class="wrapper">
 	<div class="mt-2">
@@ -12,7 +20,7 @@
 			<div class="col">
 				<h3 class="tweet-author fw-bold">{{ $user->name }}</h3>
 				<div class="row">
-					<p class="tweet-author__add tweet-author__nickname mt-2">@ {{ $user->username }}</p>
+					<p class="tweet-author__add tweet-author__nickname mt-2">&#64;{{ $user->username }}</p>
 				</div>
 			</div>
 			@can('update', $user->profile)
@@ -30,25 +38,27 @@
 				<p><strong>0</strong> в читаемых</p>
 			</div>
 		</div>
-		<div class="mt-3">
+		<div class="mt-3 mb-3">
 			<a class="profile__url" href="#">{{ $user->profile->url ?? '' }}</a>
 		</div>
 	</div>
 </section>
-<section class="wrapper mt-5">
-	<div class="tweet-form__error">{{ $errors->first() }}</div>
-	<form class="tweet-form" action="{{ route('posts.store') }}" method="POST">
-		@csrf
-		<div class="tweet-form__wrapper">
-			<textarea id="text" class="tweet-form__text" rows="4" placeholder="Что происходит?" required name="text"></textarea>
-		</div>
-		<div class="tweet-form__btns">
-			<button class="tweet-form__btn" type="submit">Твитнуть</button>
-		</div>
-	</form>
-</section>
-
-@foreach($user->posts as $post)
+@can('update', $user->profile)
+	<section class="wrapper mt-2">
+		<h2 class="tweet-form__title">Напишите о чем-нибудь</h2>
+		<div class="tweet-form__error">{{ $errors->first() }}</div>
+		<form class="tweet-form" action="{{ route('posts.store') }}" method="POST">
+			@csrf
+			<div class="tweet-form__wrapper">
+				<textarea id="text" class="tweet-form__text" rows="4" placeholder="Что происходит?" required name="text"></textarea>
+			</div>
+			<div class="tweet-form__btns">
+				<button class="tweet-form__btn" type="submit">Твитнуть</button>
+			</div>
+		</form>
+	</section>
+@endcan
+@foreach($posts as $post)
 <section class="wrapper">
 	<ul class="tweet-list">
 		<li>
@@ -58,11 +68,17 @@
 		            <div class="tweet__wrapper">
 		                <header class="tweet__header">
 		                    <h3 class="tweet-author">{{ $user->name }}
-		                        <a href="#" class="tweet-author__add tweet-author__nickname">@ {{ $user->username }}</a>
+		                        <a href="{{ route('profiles.index', $user->username) }}"
+		                        	class="tweet-author__add tweet-author__nickname">&#64;{{ $user->username }}
+		                        </a>
 		                        <time class="tweet-author__add tweet__date">{{ $post->created_at->format('d.m.Y') }}</time>
 		                    </h3>
 		                    @can('update', $user->profile)
-			                    <button class="tweet__delete-button chest-icon"></button>
+			                    <form action="{{ route('posts.destroy', $post) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+	                                <button class="tweet__delete-button chest-icon" type="submit"></button>
+                                </form>
 			                @endcan
 		                </header>
 		                <a href="{{ route('posts.show', [$post]) }}">

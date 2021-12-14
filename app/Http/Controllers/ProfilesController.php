@@ -11,7 +11,17 @@ class ProfilesController extends Controller
     public function index($username)
     {
         $user = User::where('username', $username)->firstOrFail();
-        return view('profiles.index', compact('user'));
+        $posts = $user->posts()->orderBy('created_at', 'desc')->get();
+
+        return view('profiles.index', compact('user', 'posts'));
+    }
+
+    public function sorted($username)
+    {
+        $user = User::where('username', $username)->firstOrFail();
+        $posts = $user->posts()->orderBy('created_at', 'asc')->get();
+
+        return view('profiles.index', compact('user', 'posts'));
     }
 
     public function edit($username)

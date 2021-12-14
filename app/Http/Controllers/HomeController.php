@@ -24,7 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        return view('index', compact('posts'));
+    }
+
+    public function sorted()
+    {
+        $posts = Post::orderBy('created_at', 'asc')->get();
         return view('index', compact('posts'));
     }
 }
