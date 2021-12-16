@@ -8,7 +8,7 @@
 			<li>
 			    <article class="tweet">
 			        <div class="d-flex">
-			            <img class="avatar" src="{{ asset('images/no_avatar.png') }}" alt="Аватар пользователя">
+			            <img class="avatar" src="/storage/{{ $post->user->profile->image }}" alt="Аватар">
 			            <div class="tweet__wrapper">
 			                <header class="tweet__header">
 			                    <h3 class="tweet-author">{{ $post->user->name }}
