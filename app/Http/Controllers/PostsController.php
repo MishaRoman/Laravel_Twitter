@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Http\Requests\PostsRequest;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -33,9 +34,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostsRequest $request)
     {
-        auth()->user()->posts()->create($request->all());
+        if (request('image')) {
+            $imagePath = request('image')->store('uploads', 'public');
+        }
+
+        auth()->user()->posts()->create([
+            'text' => $request['text'],
+            'image' => $imagePath ?? NULL,
+        ]);
 
         return redirect('profiles/' . auth()->user()->username);
     }

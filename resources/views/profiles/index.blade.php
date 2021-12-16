@@ -47,12 +47,14 @@
 	<section class="wrapper mt-2">
 		<h2 class="tweet-form__title">Напишите о чем-нибудь</h2>
 		<div class="tweet-form__error">{{ $errors->first() }}</div>
-		<form class="tweet-form" action="{{ route('posts.store') }}" method="POST">
+		<form class="tweet-form" action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
 			@csrf
 			<div class="tweet-form__wrapper">
 				<textarea id="text" class="tweet-form__text" rows="4" placeholder="Что происходит?" required name="text"></textarea>
 			</div>
 			<div class="tweet-form__btns">
+				<button class="tweet-img__btn" type="button"></button>
+				<input type="file" id="image" name="image">
 				<button class="tweet-form__btn" type="submit">Твитнуть</button>
 			</div>
 		</form>
@@ -84,6 +86,11 @@
 		                <a href="{{ route('posts.show', [$post]) }}">
 			                <div class="tweet-post">
 			                    <p class="tweet-post__text">{{ $post->text }}</p>
+			                    @if($post->image)
+			                    	<figure class="tweet-post__image">
+										<img src="/storage/{{ $post->image }}" alt="">
+									</figure>
+			                    @endif
 			                </div>
 			            </a>
 		            </div>
