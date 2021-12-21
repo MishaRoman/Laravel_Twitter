@@ -15,7 +15,7 @@
 	<div class="mt-2">
 		<div class="row tweet-form__wrapper">
 			<div class="col-2">
-				<img class="avatar profile__avatar" src="/storage/{{ $user->profile->image }}" alt="Аватар">
+				<img class="avatar profile__avatar" src="{{ $user->profile->profileImage() }}" alt="Аватар">
 			</div>
 			<div class="col">
 				<h3 class="tweet-author fw-bold">{{ $user->name }}</h3>
@@ -66,7 +66,7 @@
 		<li>
 		    <article class="tweet">
 		        <div class="d-flex">
-		            <img class="avatar" src="/storage/{{ $user->profile->image }}" alt="Аватар">
+		            <img class="avatar" src="{{ $user->profile->profileImage() }}" alt="Аватар">
 		            <div class="tweet__wrapper">
 		                <header class="tweet__header">
 		                    <h3 class="tweet-author">{{ $user->name }}
