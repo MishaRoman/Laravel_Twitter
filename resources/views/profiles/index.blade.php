@@ -32,10 +32,10 @@
 		<div class="profile__description lh-sm">{{ $user->profile->description ?? '' }}</div>
 		<div class="d-flex mt-3">
 			<div class="pe-5">
-				<p><strong>0</strong> читателей</p>
+				<p><strong>{{ $user->profile->followers->count() }}</strong> читателей</p>
 			</div>
 			<div class="pe-5">
-				<p><strong>0</strong> в читаемых</p>
+				<p><strong>{{ $user->following->count() }}</strong> в читаемых</p>
 			</div>
 		</div>
 		<div class="mt-3 mb-3">
