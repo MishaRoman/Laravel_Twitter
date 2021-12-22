@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
-<div class="container row">
+<div class="container row" id="app">
     <header class="header">
         <h1 class="visually-hidden">Твиттер</h1>
         <nav class="header__navigation">
@@ -44,7 +44,7 @@
                     href="{{ route('profiles.index', [Auth::user()->username]) }}"
                 @endguest
                     class="header__link header__link_profile" title="Твиты пользователя"></a>
-                <a href="#" class="header__link header__link_likes" title="Понравившиеся твиты"></a>
+                <a href="{{ route('liked') }}" class="header__link header__link_likes" title="Понравившиеся твиты"></a>
                 @yield('sorting')
             </div>
         </section>

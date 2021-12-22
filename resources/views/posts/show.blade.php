@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 
 @section('title', 'Twitter')
 
@@ -31,7 +31,15 @@
 			            </div>
 			        </div>
 			        <footer>
-			            <button class="tweet__like">53</button>
+			            @auth
+	                        <like-button post-id="{{ $post->id }}"
+	                            liked="{{ auth()->user()->likedPosts->contains($post->id) }}"
+	                            likes="{{ $post->likes->count() }}"></like-button>
+	                    @else
+	                        <a href="login">
+	                            <button class="tweet__like">{{ $post->likes->count() }}</button>
+	                        </a>
+	                    @endauth
 			        </footer>
 			    </article>
 			</li>

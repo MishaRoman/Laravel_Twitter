@@ -1,26 +1,26 @@
 <template>
     <div>
-        <button class="tweet-form__btn" @click="followUser" v-text="buttonText"></button>
+        <button class="tweet__like" @click="likePost" :class="{ tweet__like_active: status }">{{ likes }}</button>
     </div>
 </template>
 
 <script>
     export default {
-        props: ['userId', 'follows'],
+        props: ['postId', 'liked', 'likes'],
 
         mounted() {
             console.log('Component mounted.')
         },
 
-        data() {
+        data: function () {
             return {
-                status: this.follows,
+                status: this.liked,
             }
         },
 
         methods: {
-            followUser() {
-                axios.post('/follow/' + this.userId)
+            likePost() {
+                axios.post('/like/' + this.postId)
                     .then(response => {
                         this.status = !this.status
                     })
@@ -31,17 +31,9 @@
                     })
             }
         },
-
-        computed: {
-            buttonText() {
-                return (this.status) ? 'Не читать' : 'Читать'
-            }
-        }
     }
 </script>
 
 <style scoped>
-    div {
-        display: contents;
-    }
+    
 </style>
