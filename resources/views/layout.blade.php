@@ -36,7 +36,7 @@
     <main class="main">
         <section class="wrapper">
             <div class="main-header">
-                <a href="/" class="header__link header__link_home" title="Лента"></a>
+                <a href="{{ route('posts.index') }}" class="header__link header__link_home" title="Лента"></a>
                 <a
                 @guest
                     href="{{ route('login') }}"                
