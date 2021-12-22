@@ -13,7 +13,9 @@ class ProfilesController extends Controller
         $user = User::where('username', $username)->firstOrFail();
         $posts = $user->posts()->orderBy('created_at', 'desc')->get();
 
-        return view('profiles.index', compact('user', 'posts'));
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+
+        return view('profiles.index', compact('user', 'posts', 'follows'));
     }
 
     public function sorted($username)

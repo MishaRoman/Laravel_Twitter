@@ -26,7 +26,7 @@
 			@can('update', $user->profile)
 				<a class="profile__edit" href="{{ route('profiles.edit', [Auth::user()->username]) }}">Настройки профиля</a>
 			@else
-				<follow-button user-id="{{ $user->id }}"></follow-button>
+				<follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
 			@endcan
 		</div>
 		<div class="profile__description lh-sm">{{ $user->profile->description ?? '' }}</div>
