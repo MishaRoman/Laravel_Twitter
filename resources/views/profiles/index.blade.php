@@ -13,7 +13,7 @@
 @section('content')
 <section class="wrapper">
 	<div class="mt-2">
-		<div class="row tweet-form__wrapper">
+		<div class="row tweet-form__wrapper" id="app">
 			<div class="col-2">
 				<img class="avatar profile__avatar" src="{{ $user->profile->profileImage() }}" alt="Аватар">
 			</div>
@@ -26,7 +26,7 @@
 			@can('update', $user->profile)
 				<a class="profile__edit" href="{{ route('profiles.edit', [Auth::user()->username]) }}">Настройки профиля</a>
 			@else
-				<button class="tweet-form__btn" type="submit">Читать</button>
+				<follow-button user-id="{{ $user->id }}"></follow-button>
 			@endcan
 		</div>
 		<div class="profile__description lh-sm">{{ $user->profile->description ?? '' }}</div>

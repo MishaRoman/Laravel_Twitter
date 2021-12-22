@@ -9,7 +9,7 @@
      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
      crossorigin="anonymous">
      <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&amp;subset=cyrillic" rel="stylesheet" id="wt-sky-css--725574360">
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
 </head>
 <body>
 <div class="container row">
@@ -62,5 +62,6 @@
 </div>
 
 <script src="{{ asset('js/scripts.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
