@@ -14,7 +14,7 @@ class LikesController extends Controller
 
     public function index()
     {
-        $posts = auth()->user()->likedPosts;
+        $posts = auth()->user()->likedPosts()->with('user')->withCount('likes')->get();
 
         return view('posts.liked', compact('posts'));
     }

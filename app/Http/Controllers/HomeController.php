@@ -14,13 +14,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::with('user')->withCount('likes')->latest()->get();
         return view('index', compact('posts'));
     }
 
     public function sorted()
     {
-        $posts = Post::orderBy('created_at', 'asc')->get();
+        $posts = Post::with('user')->withCount('likes')->oldest()->get();
         return view('index', compact('posts'));
     }
 }

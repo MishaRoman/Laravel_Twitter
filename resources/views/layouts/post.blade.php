@@ -36,10 +36,10 @@
                     @auth
                         <like-button post-id="{{ $post->id }}"
                             liked="{{ auth()->user()->likedPosts->contains($post->id) }}"
-                            likes="{{ $post->likes->count() }}"></like-button>
+                            likes="{{ $post->likes_count }}"></like-button>
                     @else
                         <a href="login">
-                            <button class="tweet__like">{{ $post->likes->count() }}</button>
+                            <button class="tweet__like">{{ $post->likes_count }}</button>
                         </a>
                     @endauth
                 </footer>

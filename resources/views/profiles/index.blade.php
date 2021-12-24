@@ -35,7 +35,7 @@
 				<p><strong>{{ $user->profile->followers->count() }}</strong> читателей</p>
 			</div>
 			<div class="pe-5">
-				<p><strong>{{ $user->following->count() }}</strong> в читаемых</p>
+				<p><strong>{{ $user->following_count }}</strong> в читаемых</p>
 			</div>
 		</div>
 		<div class="mt-3 mb-3">
