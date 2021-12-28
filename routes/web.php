@@ -21,4 +21,6 @@ Route::get('profiles/{username}/edit', [ProfilesController::class, 'edit'])->nam
 Route::post('/follow/{user}', [FollowsController::class, 'store']);
 Route::post('/like/{post}', [LikesController::class, 'store']);
 
+Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
+Route::post('posts/restore/{postId}', [PostsController::class, 'restore'])->name('posts.restore');
 Route::resource('posts', PostsController::class);

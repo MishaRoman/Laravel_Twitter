@@ -54,6 +54,10 @@
                 <div class="alert alert-danger">
                     <p>{{ session()->get('warning') }}</p>
                 </div>
+            @elseif(session()->has('success'))
+                <div class="alert alert-success">
+                    <p>{{ session()->get('success') }}</p>
+                </div>
             @endif
         </section>
         @yield('content')

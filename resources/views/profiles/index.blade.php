@@ -24,7 +24,14 @@
 				</div>
 			</div>
 			@can('update', $user->profile)
-				<a class="profile__edit" href="{{ route('profiles.edit', [Auth::user()->username]) }}">Настройки профиля</a>
+			<div class="col-4">
+				<div class="mb-3">
+					<a class="profile__edit" href="{{ route('profiles.edit', [Auth::user()->username]) }}">Настройки профиля</a>
+				</div>
+				<div>
+					<a class="profile__edit" href="{{ route('posts.trashed') }}">Удаленные твиты</a>
+				</div>
+			</div>
 			@else
 				<follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
 			@endcan

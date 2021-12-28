@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Лента')
+@section('title', 'Понравившиеся твиты')
 
 @section('sorting')
         @if(Route::is('sorted'))

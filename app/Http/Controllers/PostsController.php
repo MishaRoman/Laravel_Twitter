@@ -102,4 +102,19 @@ class PostsController extends Controller
         session()->flash('warning', 'Твит удален');
         return redirect()->back();
     }
+
+    public function trashed()
+    {
+        $user = auth()->user();
+        $posts = Post::onlyTrashed()->where('user_id', $user->id)->with('user')->withCount('likes')->latest()->get();
+
+        return view('posts.trashed', compact('posts'));
+    }
+
+    public function restore($postId)
+    {
+        $post = Post::where('id', $postId)->restore();
+        session()->flash('success', 'Твит восстановлен');
+        return redirect()->back();
+    }
 }
