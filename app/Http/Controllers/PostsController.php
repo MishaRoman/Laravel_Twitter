@@ -68,29 +68,6 @@ class PostsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Post $post)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Post  $post
@@ -98,6 +75,8 @@ class PostsController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('delete', $post);
+
         $post->delete();
         session()->flash('warning', 'Твит удален');
         return redirect()->back();
@@ -106,14 +85,18 @@ class PostsController extends Controller
     public function trashed()
     {
         $user = auth()->user();
-        $posts = Post::onlyTrashed()->where('user_id', $user->id)->with('user')->withCount('likes')->latest()->get();
+        $posts = Post::onlyTrashed()->where('user_id', $user->id)->with('user')->withCount('likes')->get();
 
         return view('posts.trashed', compact('posts'));
     }
 
     public function restore($postId)
     {
-        $post = Post::where('id', $postId)->restore();
+        $post = Post::withTrashed()->where('id', $postId)->firstOrFail();
+
+        $this->authorize('restore', $post);
+        $post->restore();
+
         session()->flash('success', 'Твит восстановлен');
         return redirect()->back();
     }
