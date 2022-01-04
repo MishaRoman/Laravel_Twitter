@@ -12,9 +12,9 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-    
-    'failed' => 'These credentials do not match our records.',
-    'password' => 'The provided password is incorrect.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+
+    'failed' => 'Неверный логин или пароль.',
+    'password' => 'Неверный пароль.',
+    'throttle' => 'Слишком много попыток войти. Пожалуйста, попробуйте через :seconds секунд.',
 
 ];

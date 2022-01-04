@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Удаленные твиты')
+@section('title', __('main.deleted_tweets'))
 
 @section('content')
 
@@ -10,7 +10,7 @@
         <li>
             <article class="tweet">
                 <div class="d-flex">
-                    <img class="avatar" src="{{ $post->user->profile->profileImage() }}" alt="Аватар">
+                    <img class="avatar" src="{{ $post->user->profile->profileImage() }}" alt="avatar">
                     <div class="tweet__wrapper">
                         <header class="tweet__header">
                             <h3 class="tweet-author">{{ $post->user->name }}
@@ -22,7 +22,8 @@
                             <form action="{{ route('posts.restore', $post->id) }}" method="POST">
                                 @csrf
                                 @method('PATCH')
-                                <button class="tweet__restore-button restore-icon" type="submit" title="Восстановить"></button>
+                                <button class="tweet__restore-button restore-icon" type="submit"
+                                    title="{{ __('main.restore') }}"></button>
                             </form>
                         </header>
                         <a href="{{ route('posts.show', [$post]) }}">

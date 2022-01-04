@@ -1,12 +1,13 @@
 @extends('layouts.layout')
 
-@section('title', 'Лента')
+@section('title', __('main.feed') )
 
 @section('sorting')
         @if(Route::is('sorted'))
-            <a href="/" class="header__link header__link_sort" title="Сортировать"></a>
+            <a href="/" class="header__link header__link_sort" title="{{ __('main.sorting') }}"></a>
         @else
-            <a href="{{ route('sorted') }}" class="header__link header__link_sort" title="Сортировать"></a>
+            <a href="{{ route('sorted') }}" class="header__link header__link_sort"
+                title="{{ __('main.sorting') }}"></a>
         @endif
 @endsection
 
