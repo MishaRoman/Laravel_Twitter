@@ -20,7 +20,7 @@
                             </form>
                             @endcan
                         </header>
-                        <a href="{{ route('posts.show', [$post]) }}">
+                        <a href="{{ route('posts.show', $post) }}">
                             <div class="tweet-post">
                                 <p class="tweet-post__text">{{ $post->text }}</p>
                                 @if($post->image)
@@ -33,6 +33,11 @@
                     </div>
                 </div>
                 <footer>
+                    <div class="d-flex justify-content-end align-items-center">
+                    <a href="{{ route('posts.show', $post) }}">
+                        <button class="icon tweet__comments me-3">{{ $post->comments_count }}</button>
+                    </a>
+
                     @auth
                         <like-button post-id="{{ $post->id }}"
                             liked="{{ auth()->user()->likedPosts->contains($post->id) }}"
@@ -42,8 +47,9 @@
                             <button class="tweet__like">{{ $post->likes_count }}</button>
                         </a>
                     @endauth
+                    </div>
                 </footer>
-                </article>
-            </li>
-        </ul>
-    </section>
+            </article>
+        </li>
+    </ul>
+</section>

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilesController;
 use App\Http\Controllers\FollowsController;
 use App\Http\Controllers\LikesController;
+use App\Http\Controllers\CommentsController;
 
 Route::get('locale/{locale}', [HomeController::class, 'changeLocale'])->name('locale');
 
@@ -27,5 +28,10 @@ Route::middleware(['set_locale'])->group(function() {
 	Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
 	Route::patch('posts/restore/{postId}', [PostsController::class, 'restore'])->name('posts.restore');
 	Route::resource('posts', PostsController::class);
+
+	Route::group(['prefix' => '{post}/comments'], function() {
+		Route::post('/', [CommentsController::class, 'store'])->name('comments.store');
+		Route::delete('/delete/{comment}', [CommentsController::class, 'destroy'])->name('comments.destroy');
+	});
 
 });
