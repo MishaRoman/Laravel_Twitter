@@ -27,6 +27,7 @@ Route::middleware(['set_locale'])->group(function() {
 
 	Route::get('posts/trashed', [PostsController::class, 'trashed'])->name('posts.trashed');
 	Route::patch('posts/restore/{postId}', [PostsController::class, 'restore'])->name('posts.restore');
+	Route::delete('posts/delete/{postId}', [PostsController::class, 'deletePermanently'])->name('posts.delete');
 	Route::resource('posts', PostsController::class);
 
 	Route::group(['prefix' => '{post}/comments'], function() {

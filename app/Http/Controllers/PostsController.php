@@ -100,4 +100,14 @@ class PostsController extends Controller
         session()->flash('success', 'Твит восстановлен');
         return redirect()->back();
     }
+
+    public function deletePermanently($postId) {
+        $post = Post::withTrashed()->where('id', $postId)->firstOrFail();
+
+        $this->authorize('restore', $post);
+        $post->forceDelete();
+
+        session()->flash('warning', 'Твит удален навсегда');
+        return redirect()->back();
+    }
 }

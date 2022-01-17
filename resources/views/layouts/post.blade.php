@@ -16,7 +16,8 @@
                             <form action="{{ route('posts.destroy', $post) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button class="tweet__delete-button chest-icon" type="submit"></button>
+                                <button class="tweet__delete-button chest-icon" type="submit"
+                                 onclick="return confirm('{{ __('main.confirm_delete') }}')"></button>
                             </form>
                             @endcan
                         </header>

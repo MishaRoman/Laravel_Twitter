@@ -19,12 +19,21 @@
                                 </a>
                                 <time class="tweet-author__add tweet__date">{{ $post->created_at->format('d.m.Y') }}</time>
                             </h3>
-                            <form action="{{ route('posts.restore', $post->id) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <button class="tweet__restore-button restore-icon" type="submit"
-                                    title="{{ __('main.restore') }}"></button>
-                            </form>
+                            <div class="d-flex">
+                                <form action="{{ route('posts.restore', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="tweet__restore-button restore-icon me-1" type="submit"
+                                        title="{{ __('main.restore') }}"></button>
+                                </form>
+                                
+                                <form action="{{ route('posts.delete', $post->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="tweet__delete-button chest-icon" type="submit"
+                                     onclick="return confirm('{{ __('main.confirm_force_delete') }}')"></button>
+                                </form>
+                            </div>
                         </header>
                         <a href="{{ route('posts.show', [$post]) }}">
                             <div class="tweet-post">

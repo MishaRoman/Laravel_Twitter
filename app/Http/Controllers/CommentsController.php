@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
+use App\Http\Requests\CommentsRequest;
 use App\Models\Comment;
 use App\Models\Post;
-use Illuminate\Http\Request;
-use App\Http\Requests\CommentsRequest;
 
 class CommentsController extends Controller
 {
@@ -39,6 +41,8 @@ class CommentsController extends Controller
      */
     public function destroy(Post $post, Comment $comment)
     {
+        Gate::authorize('delete-comment', $comment);
+
         $comment->delete();
         return redirect()->back();
     }

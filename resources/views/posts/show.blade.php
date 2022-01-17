@@ -54,16 +54,16 @@
     </section>
 
     <section class="wrapper mt-2">
-        <h2 class="tweet-form__title">Комментарии ({{ $post->comments->count() }})</h2>
+        <h2 class="tweet-form__title">{{ __('main.comments') }} ({{ $post->comments->count() }})</h2>
         <div class="tweet-form__error">{{ $errors->first() }}</div>
         <form class="tweet-form" action="{{ route('comments.store', $post->id) }}" method="POST">
             @csrf
             <div class="tweet-form__wrapper">
                 <textarea id="message" class="tweet-form__text" rows="4"
-                 placeholder="Напишите комментарий" required name="message"></textarea>
+                 placeholder="{{ __('main.add_comment') }}" required name="message"></textarea>
             </div>
             <div class="tweet-form__btns">
-                <button class="tweet-form__btn" type="submit">Добавить</button>
+                <button class="tweet-form__btn" type="submit">{{ __('main.add_btn') }}</button>
             </div>
         </form>
     </section>
