@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
 use App\Models\User;
 
 class PostFactory extends Factory
@@ -17,7 +16,7 @@ class PostFactory extends Factory
     {
         return [
             'user_id' => function () {
-                return User::orderBy(DB::raw('RAND()'))->first()->id;
+                return User::inRandomOrder()->first()->id;
             },
             'text' => $this->faker->realText(),
         ];

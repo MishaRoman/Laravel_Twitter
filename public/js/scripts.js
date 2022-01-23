@@ -33,14 +33,3 @@ if (loginModal) {
 	const loginModalOverlay = loginModal.closest('.overlay');
 	loginModalOverlay.addEventListener('click', closeModal);
 }
-
-// if (imgButton) {
-// 	imgButton.addEventListener('click', () => {
-// 		const imgInput = document.getElementById('image-path'),
-// 					imgSpan = document.getElementById('image-span');
-
-// 		imgUrl = prompt('Введите адрес картинки');
-// 		imgInput.value = imgUrl;
-// 		imgSpan.textContent = imgUrl;
-// 	});
-// }

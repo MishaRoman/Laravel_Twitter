@@ -2,14 +2,6 @@
 
 @section('title', $user->name)
 
-@section('sorting')
-    @if(Route::is('profiles.sorted'))
-        <a href="{{ route('profiles.index', $user->username) }}" class="header__link header__link_sort" title="Сортировать"></a>
-    @else
-        <a href="{{ route('profiles.sorted', $user->username) }}" class="header__link header__link_sort" title="Сортировать"></a>
-    @endif
-@endsection
-
 @section('content')
 <section class="wrapper">
 	<div class="mt-2">
@@ -72,7 +64,7 @@
 	</section>
 @endcan
 
-@foreach($posts as $post)
+@foreach($user->posts as $post)
 	@include('layouts.post', compact($post))
 @endforeach
 

@@ -21,19 +21,9 @@ class PostsController extends Controller
     {
         $users = auth()->user()->following()->pluck('profiles.user_id');
 
-        $posts = Post::whereIn('user_id', $users)->with('user')->withCount('likes')->latest()->get();
+        $posts = Post::whereIn('user_id', $users)->get();
 
         return view('posts.index', compact('posts'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -85,7 +75,7 @@ class PostsController extends Controller
     public function trashed()
     {
         $user = auth()->user();
-        $posts = Post::onlyTrashed()->where('user_id', $user->id)->with('user')->withCount('likes')->get();
+        $posts = Post::onlyTrashed()->where('user_id', $user->id)->get();
 
         return view('posts.trashed', compact('posts'));
     }

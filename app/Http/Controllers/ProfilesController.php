@@ -10,22 +10,11 @@ class ProfilesController extends Controller
 {
     public function index($username)
     {
-        $user = User::where('username', $username)->with('profile')->withCount('following')->firstOrFail();
-        $posts = $user->posts()->with('user')->withCount('likes')->latest()->get();
+        $user = User::where('username', $username)->with('posts', 'profile')->withCount('following')->firstOrFail();
 
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
-        return view('profiles.index', compact('user', 'posts', 'follows'));
-    }
-
-    public function sorted($username)
-    {
-        $user = User::where('username', $username)->with('profile')->withCount('following')->firstOrFail();
-        $posts = $user->posts()->with('user')->withCount('likes')->oldest()->get();
-
-        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
-
-        return view('profiles.index', compact('user', 'posts', 'follows'));
+        return view('profiles.index', compact('user', 'follows'));
     }
 
     public function edit($username)

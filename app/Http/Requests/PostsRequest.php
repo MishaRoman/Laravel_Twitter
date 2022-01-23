@@ -25,6 +25,7 @@ class PostsRequest extends FormRequest
     {
         return [
             'image' => 'nullable|image',
+            'text' => 'required',
         ];
     }
 

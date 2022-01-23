@@ -25,16 +25,14 @@
                             </form>
                             @endcan
                         </header>
-                        <a href="{{ route('posts.show', [$post]) }}">
-                            <div class="tweet-post">
-                                <p class="tweet-post__text">{{ $post->text }}</p>
-                                @if($post->image)
-                                <figure class="tweet-post__image">
-                                    <img src="/storage/{{ $post->image }}" alt="">
-                                </figure>
-                                @endif
-                            </div>
-                        </a>
+                        <div class="tweet-post">
+                            <p class="tweet-post__text">{{ $post->text }}</p>
+                            @if($post->image)
+                            <figure class="tweet-post__image">
+                                <img src="/storage/{{ $post->image }}" alt="">
+                            </figure>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <footer>
@@ -54,7 +52,7 @@
     </section>
 
     <section class="wrapper mt-2">
-        <h2 class="tweet-form__title">{{ __('main.comments') }} ({{ $post->comments->count() }})</h2>
+        <h2 class="tweet-form__title">{{ __('main.comments') }} ({{ $post->comments_count }})</h2>
         <div class="tweet-form__error">{{ $errors->first() }}</div>
         <form class="tweet-form" action="{{ route('comments.store', $post->id) }}" method="POST">
             @csrf
@@ -69,13 +67,12 @@
     </section>
 
     <section class="wrapper">
-        
         @foreach($post->comments as $comment)
             <ul class="tweet-list">
                 <li>
                     <article class="tweet">
                         <div class="d-flex">
-                            <img class="avatar" src="{{ $post->user->profile->profileImage() }}" alt="avatar">
+                            <img class="avatar" src="{{ $comment->user->profile->profileImage() }}" alt="avatar">
                             <div class="tweet__wrapper">
                                 <header class="tweet__header">
                                     <h3 class="tweet-author">{{ $comment->user->name }}
@@ -90,7 +87,7 @@
                                             @method('DELETE')
                                             <button class="tweet__delete-button chest-icon" type="submit"></button>
                                         </form>
-                                    @endcan
+                                    @endif
                                 </header>
                                 <div class="tweet-post">
                                     <p class="tweet-post__text">{{ $comment->message }}</p>

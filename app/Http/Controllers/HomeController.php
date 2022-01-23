@@ -16,13 +16,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('user')->withCount('likes')->latest()->get();
-        return view('index', compact('posts'));
-    }
-
-    public function sorted()
-    {
-        $posts = Post::with('user')->withCount('likes')->oldest()->get();
+        $posts = Post::get();
         return view('index', compact('posts'));
     }
 

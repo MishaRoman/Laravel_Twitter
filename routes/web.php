@@ -14,11 +14,9 @@ Route::middleware(['set_locale'])->group(function() {
 
 	Auth::routes();
 	Route::get('/', [HomeController::class, 'index']);
-	Route::get('sorted', [HomeController::class, 'sorted'])->name('sorted');
 	Route::get('liked', [LikesController::class, 'index'])->name('liked');
 
 	Route::get('profiles/{username}', [ProfilesController::class, 'index'])->name('profiles.index');
-	Route::get('profiles/{username}/sorted', [ProfilesController::class, 'sorted'])->name('profiles.sorted');
 	Route::patch('profiles/{user}', [ProfilesController::class, 'update'])->name('profiles.update');
 	Route::get('profiles/{username}/edit', [ProfilesController::class, 'edit'])->name('profiles.edit');
 

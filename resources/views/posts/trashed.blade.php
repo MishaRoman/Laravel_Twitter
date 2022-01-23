@@ -35,28 +35,30 @@
                                 </form>
                             </div>
                         </header>
-                        <a href="{{ route('posts.show', [$post]) }}">
-                            <div class="tweet-post">
-                                <p class="tweet-post__text">{{ $post->text }}</p>
-                                @if($post->image)
-                                <figure class="tweet-post__image">
-                                    <img src="/storage/{{ $post->image }}" alt="">
-                                </figure>
-                                @endif
-                            </div>
-                        </a>
+                        <div class="tweet-post">
+                            <p class="tweet-post__text">{{ $post->text }}</p>
+                            @if($post->image)
+                            <figure class="tweet-post__image">
+                                <img src="/storage/{{ $post->image }}" alt="">
+                            </figure>
+                            @endif
+                        </div>
                     </div>
                 </div>
                 <footer>
-                    @auth
-                        <like-button post-id="{{ $post->id }}"
-                            liked="{{ auth()->user()->likedPosts->contains($post->id) }}"
-                            likes="{{ $post->likes_count }}"></like-button>
-                    @else
-                        <a href="login">
-                            <button class="tweet__like">{{ $post->likes_count }}</button>
-                        </a>
-                    @endauth
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button class="icon tweet__comments me-3">{{ $post->comments_count }}</button>
+
+                        @auth
+                            <like-button post-id="{{ $post->id }}"
+                                liked="{{ auth()->user()->likedPosts->contains($post->id) }}"
+                                likes="{{ $post->likes_count }}"></like-button>
+                        @else
+                            <a href="login">
+                                <button class="tweet__like">{{ $post->likes_count }}</button>
+                            </a>
+                        @endauth
+                    </div>
                 </footer>
                 </article>
             </li>

@@ -12,7 +12,17 @@ class Post extends Model
 
     protected $fillable = ['text', 'image'];
 
-    protected $withCount = ['comments'];
+    protected $withCount = ['comments', 'likes'];
+    protected $with = ['user'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::forceDeleted(function ($post) {
+            $post->comments()->delete();
+        });
+    }
 
     public function user()
     {

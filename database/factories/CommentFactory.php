@@ -19,10 +19,10 @@ class CommentFactory extends Factory
     {
         return [
             'user_id' => function () {
-                return User::orderBy(DB::raw('RAND()'))->first()->id;
+                return User::inRandomOrder()->first()->id;
             },
             'post_id' => function () {
-                return Post::orderBy(DB::raw('RAND()'))->first()->id;
+                return Post::inRandomOrder()->first()->id;
             },
             'message' => $this->faker->sentence(),
         ];
